@@ -1,0 +1,14 @@
+$sizes: (
+  25: 25%,
+  50: 50%,
+  75: 75%,
+  100: 100%
+);
+
+@each $prop, $abbr in (width:w,height:h){
+  @each $num, $val in $sizes{
+    .#{$abbr}-#{$num}{
+      #{$prop}:#{$val};
+    }
+  }
+}

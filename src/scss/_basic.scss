@@ -1,0 +1,351 @@
+$body-bg: #f8f7fc;
+$body-color: #18253d;
+$white: #fff;
+$main-blue: #001935;
+$secondary-blue: #3c88fd;
+$freedom-blue: #02b8ff;
+$dark-gray: #4a4a4a;
+$light-gray: #a7aaaf;
+
+%standard-boxshadow {
+  box-shadow: 3px 0 13px 0 rgba(100, 112, 134, 0.1);
+}
+
+html {
+  font-size: 16px;
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  background: $body-bg;
+  color: $body-color;
+  font-family: "PingFang TC";
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.scrollbar {
+  padding-left: 6px;
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+}
+
+#main-app {
+  height: 100%;
+}
+
+nav {
+  width: 60px;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  padding: 16px 0;
+  background-color: $main-blue;
+  z-index: 100;
+  a {
+    display: block;
+    color: $white;
+  }
+  .menu a {
+    margin-bottom: 10px;
+  }
+  i {
+    font-size: 26px;
+  }
+}
+
+#main-content {
+  height: 100%;
+  margin-left: 60px;
+  display: flex;
+}
+
+.card-list-panel {
+  height: 100%;
+  overflow-y: scroll;
+  flex: 0 0 250px;
+  background-color: $white;
+  @extend %standard-boxshadow;
+  z-index: 20;
+  .flex-row {
+    display: flex;
+    align-items: center;
+  }
+  .card {
+    opacity: 0.5;
+    &:hover,
+    &.active {
+      /*被hover或被點擊時 透明度恢復為1*/
+      opacity: 1;
+    }
+    &.active {
+      /*被點擊時 邊框從灰色變更為深灰色*/
+      border-color: $light-gray;
+    }
+    width: 200px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    margin-top: 16px;
+    padding: 8px;
+    font-size: 14px;
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.09);
+    i {
+      width: 20px;
+      font-size: 16px;
+      text-align: center;
+      margin-right: 5px;
+      &.fa-youtube {
+        color: #f11502;
+      }
+      &.fa-facebook-square {
+        color: #4177f2;
+      }
+      &.fa-instagram {
+        color: #5b30da;
+      }
+      &.fa-facebook-square,
+      &.fa-instagram {
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+.right-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.stepper-panel {
+  height: 120px;
+  .stepper-container {
+    height: 100%;
+    width: 80%;
+    margin: 0 auto;
+    align-items: center;
+    display: flex;
+    .step {
+      position: relative;
+      flex: 1;
+      text-align: center;
+      line-height: 24px;
+      &:nth-child(1) .circle-container::after {
+        content: "1";
+      }
+      &:nth-child(2) .circle-container::after {
+        content: "2";
+      }
+      &:nth-child(3) .circle-container::after {
+        content: "3";
+      }
+      &.checked .circle-container::after {
+        content: "\2714";
+      }
+      &.active,
+      &.checked {
+        .circle-container {
+          background-color: $freedom-blue;
+        }
+        .label-container {
+          color: $body-color;
+        }
+      }
+      .circle-container {
+        height: 24px;
+        width: 24px;
+        background-color: $light-gray;
+        border-radius: 50%;
+        color: $dark-gray;
+        margin: 0 auto;
+      }
+      .label-container {
+        margin-top: 10px;
+        color: $light-gray;
+      }
+      .connect-line {
+        display: block;
+        height: 1px;
+        background-color: $light-gray;
+        position: absolute;
+        top: 12px;
+        right: calc(50% + 20px);
+        left: calc(-50% + 20px);
+      }
+    }
+  }
+}
+
+.form-panel {
+  @extend %standard-boxshadow;
+  background-color: $white;
+  padding: 32px 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow-y: scroll;
+  .form-container {
+    height: 100%;
+    width: 80%;
+    margin: 0 auto;
+    form {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      .form-content {
+        flex: 1;
+      }
+    }
+    .part {
+      /*第一步*/
+      .terms-panel {
+        border: 1px solid $light-gray;
+        border-radius: 5px;
+        padding: 16px;
+        max-height: 300px;
+        overflow-y: scroll;
+      }
+      /*第二步*/
+      .form-row {
+        margin-bottom: 24px;
+        > label {
+          /*指定下一層的label*/
+          display: block;
+          margin-bottom: 6px;
+          font-weight: 500;
+        }
+        input {
+          border: 1px solid $light-gray;
+          border-radius: 5px;
+          font-size: 16px;
+          padding: 0.5em;
+          &:hover,
+          &:focus {
+            border-color: $dark-gray;
+          }
+          &[type="checkbox"] {
+            -webkit-appearance: none;
+            border-radius: 3px;
+            position: relative;
+            &:checked {
+              background-color: $secondary-blue;
+              &::after {
+                content: "\2714";
+                position: absolute;
+                top: 0;
+                left: 3px;
+                font-size: 12px;
+                color: $white;
+              }
+            }
+            &:focus {
+              border-color: $light-gray;
+            }
+            &:hover {
+              border-color: $dark-gray;
+            }
+            ~ label {
+              display: inline-block;
+              font-weight: normal;
+              margin: 0;
+            }
+          }
+          &[type="radio"] {
+            -webkit-appearance: none;
+            border-radius: 50%;
+            cursor: pointer;
+            &:checked {
+              box-shadow: inset 0 0 0 5px $secondary-blue;
+            }
+            ~ label {
+              margin-right: 20px;
+            }
+          }
+          &[type="date"] {
+            cursor: pointer;
+            &:invalid {
+              color: #747474;
+            }
+          }
+          &[type="number"] {
+            width: 60px;
+          }
+        }
+        .select-wrapper {
+          z-index: 0;
+          position: relative;
+          width: 25%;
+          &::after {
+            content: "";
+            z-index: -1;
+            border-style: solid;
+            border-width: 6px 5px 0 5px;
+            border-color: $light-gray transparent transparent transparent;
+            position: absolute;
+            top: 50%;
+            right: 8px;
+            transform: translateY(-50%); // 以自己 y-軸的高度，移動 -50%
+          }
+          select {
+            background-color: transparent;
+            border-radius: 5px;
+            font-size: 16px;
+            padding: 8px;
+            &:hover,
+            &:focus {
+              border-color: $dark-gray;
+            }
+            -webkit-appearance: none;
+            cursor: pointer;
+            width: 100%;
+            &:invalid {
+              color: #747474;
+            }
+          }
+        }
+        textarea {
+          background-color: transparent;
+          border-radius: 5px;
+          font-size: 16px;
+          padding: 8px;
+          &:hover,
+          &:focus {
+            border-color: $dark-gray;
+          }
+          resize: none;
+          overflow-y: scroll;
+        }
+      }
+    }
+    .control-panel {
+      .btn {
+        font-size: 16px;
+        border-radius: 5px;
+        height: 32px;
+        padding: 0 16px;
+        box-shadow: 1px 1px 5px #a6a6a6;
+        &.btn-primary {
+          color: $white;
+          background-color: $secondary-blue;
+        }
+        &.btn-outline {
+          color: $dark-gray;
+        }
+        &:hover {
+          box-shadow: 1px 1px 5px $dark-gray;
+        }
+        &[disabled] {
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+}
